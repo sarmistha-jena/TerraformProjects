@@ -11,5 +11,5 @@ resource "aws_instance" "example1" {
 }
 
 resource "aws_eip" "lb" {
-  instance = aws_instance.web.id
+  instance = aws_instance.example1.id
 }
