@@ -13,11 +13,6 @@ resource "aws_instance" "example1" {
   }
 }
 
-resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket-var1"
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
+resource "aws_eip" "lb" {
+  instance = aws_instance.web.id
 }
