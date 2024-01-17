@@ -1,0 +1,13 @@
+terraform init --- Initialize working directory (with .terraform folder) that contains terraform configuration file(i.e; *.tf)
+terraform validate --- verifies if a configuration is syntactically correct and internally consistent
+terraform fmt --- formats the configuration file in canonical format
+terraform plan --- creates an execution plan, which lets us preview the changes
+terraform plan -out <fileName> --- -out=FILE option to save the generated plan to a file on disk, which you can later execute by passing the file to terraform apply as an extra argument.
+terraform apply --- executes the action proposed in Terraform plan
+terraform apply "<fileName>"
+terraform apply -auto-approve --- does not asks for confirmation
+terraform destroy --- delete/destroy all remote objects managed by a particular Terraform configuration.
+terraform plan -destroy -out "<destroy_plan FileName>"
+terraform destroy -target "PROVIDER.RESOURCE_TYPE.RESOURCE_NAME.ATTRIBUTE" --- destroy a particular object
+terraform show --- human-readable output from a state or plan file.
+terraform state list --- command is used to list resources within a Terraform state
