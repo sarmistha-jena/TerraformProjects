@@ -1,4 +1,7 @@
 #terraform import <resource name> <resource id>
+#terraform import aws_instance.example2 i-075f0c2681a91c883
+#This to be done before terraform apply
+
 
 provider "aws" {
   region = "ap-south-1"
