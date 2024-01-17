@@ -20,5 +20,3 @@ resource "aws_instance" "example1" {
     Name = "TF instance assignment-1"
   }
 }
-
-}
