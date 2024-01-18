@@ -9,7 +9,7 @@ variable "amiIdList" {
 
 variable "amiIdMap" {
   type   = map(string)
-  values = {
+  default = {
     "centos" = "ami-0c6615d1e95c98aca"
     "ubuntu" = "ami-0c1a7f89451184c8b"
   }
