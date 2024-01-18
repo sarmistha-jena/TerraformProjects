@@ -11,15 +11,23 @@ terraform plan -destroy -out "<destroy_plan FileName>"
 terraform destroy -target "PROVIDER.RESOURCE_TYPE.RESOURCE_NAME.ATTRIBUTE" --- destroy a particular object
 terraform show --- human-readable output from a state or plan file.
 terraform state list --- command is used to list resources within a Terraform state
-
+---------------------------------------------------------------------------------------------------------------------------
 terraform import <resource name> <resource id>
 --- <resource id> is created outside of terraform and will be part of terraform as resource name before apply
 #eg; terraform import aws_instance.example2 i-075f0c2681a91c883
 ----------------------------------------------------------------------------------------------------------------------------
 tf plan&apply -var "varName=value" -- single value variable
-tf plan&apply -var "varName=value[index]" -- array/list value variables
-tf plan&apply -var "varName=value[key]" -- map value variables
+tf plan&apply -var 'varName="<value>"]' -- array/list value variables
+tf plan&apply -var 'varName={"key=value"}' -- map value variables
+#eg; terraform apply -var="image_id=ami-abc123"
+#eg; terraform apply -var='image_id_list=["ami-abc123","ami-def456"]' -var="instance_type=t2.micro"
+#eg; terraform apply -var='image_id_map={"us-east-1":"ami-abc123","us-east-2":"ami-def456"}'
+
 *.tfvars if we need to store variables in a separate file
+
+terraform plan/apply/destroy -var-file=variable.tfvars
+----------------------------------------------------------------------------------------------------------------------------
+
 ----------------------------------------------------------------------------------------------------------------------------
 Blocks
 
