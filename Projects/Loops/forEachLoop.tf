@@ -8,7 +8,3 @@ resource "aws_iam_user" "users2" {
   for_each = toset(var.userNames2)
   name     = each.value
 }
-output "userList" {
-  count = length(var.userNames2)
-  value = aws_iam_user.users2.id[count.index]
-}

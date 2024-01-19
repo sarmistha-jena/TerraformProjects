@@ -7,6 +7,6 @@ variable "const" {
 }
 
 resource "aws_iam_user" "users" {
-  count = var.const?1 : 2
+  count = var.const>0 ?1 : 2
   name  = "exampleUsers2"
 }
