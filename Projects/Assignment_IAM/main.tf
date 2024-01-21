@@ -1,7 +1,7 @@
 module "iam_qa_user" {
   source = "./modules/UserIAM"
   qauser = "1"
-  //userName = "testUser1"
+  userName = var.userName
 }
 /*
 module "iam_dev_user" {
