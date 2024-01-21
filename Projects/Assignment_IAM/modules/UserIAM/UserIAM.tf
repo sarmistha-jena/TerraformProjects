@@ -25,20 +25,21 @@ resource "aws_iam_user" "demo" {
 resource "aws_iam_access_key" "demo" {
   //user = aws_iam_user.demo.name
   depends_on = [aws_iam_user.demo]
-  count = length(var.userName)
+  //count = length(var.userName)
   //user = element(var.userName, count.index)
-
-  user = element(var.userName[key], count.index)
+  for_each = var.userName
+  user = each.key
 }
 
 resource "aws_iam_user_policy" "demo" {
   depends_on = [aws_iam_user.demo]
-  count = length(var.userName)
-
+  //count = length(var.userName)
 //  policy = var.devuser ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
   //user = aws_iam_user.demo.name
 
 //  user   = element(var.userName, count.index)
-  policy = var.userName[value] ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
-  user   = element(var.userName[key], count.index)
+  for_each = var.userName
+
+  policy = element(each.value) == "dev" ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
+  user = each.key
 }
