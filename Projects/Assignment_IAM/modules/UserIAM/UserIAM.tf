@@ -13,7 +13,7 @@ resource "aws_iam_user" "demo" {
   //for_each = toset(var.userName)
   //  name = each.value
 
-  for_each = toset(var.userName[key])
+  for_each = toset(var.userName)
   name = each.key
   path = var.path
   force_destroy = var.force_destroy
