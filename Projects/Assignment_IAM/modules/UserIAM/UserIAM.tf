@@ -26,5 +26,5 @@ resource "aws_iam_access_key" "demo" {
 
 resource "aws_iam_user_policy" "demo" {
   policy = var.devuser ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
-  user   = aws_iam_user.demo.name
+  user   = element(var.userName, count.index)
 }
