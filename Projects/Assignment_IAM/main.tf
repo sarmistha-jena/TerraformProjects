@@ -9,3 +9,11 @@ module "iam_dev_user" {
   qauser = "1"
   userName = "devUser1"
 }*/
+variable "userName" {
+  description = "List of names to be created"
+  type   = map(string)
+  default = {
+    "qaUser" = "qa"
+    "devUser" = "dev"
+  }
+}
