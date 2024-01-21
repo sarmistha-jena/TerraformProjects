@@ -9,7 +9,7 @@ module "PolicyIAM_QA" {
 }
 resource "aws_iam_user" "demo" {
   //name = var.userName
-  for_each = var.userName
+  for_each = toset(var.userName)
   name = each.value
   path = var.path
   force_destroy = var.force_destroy
