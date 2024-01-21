@@ -25,6 +25,8 @@ resource "aws_iam_access_key" "demo" {
 }
 
 resource "aws_iam_user_policy" "demo" {
+  depends_on = [aws_iam_user.demo]
+  count = length(var.userName)
   policy = var.devuser ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
   user   = element(var.userName, count.index)
 }
