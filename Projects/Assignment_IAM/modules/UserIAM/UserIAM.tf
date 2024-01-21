@@ -14,7 +14,7 @@ resource "aws_iam_user" "demo" {
   path = var.path
   force_destroy = var.force_destroy
   tags = {
-    "testuser" = var.userName
+    "testuser" = each.value
   }
 }
 
