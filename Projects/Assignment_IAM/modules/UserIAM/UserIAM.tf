@@ -19,7 +19,9 @@ resource "aws_iam_user" "demo" {
 }
 
 resource "aws_iam_access_key" "demo" {
-  user = aws_iam_user.demo.name
+  //user = aws_iam_user.demo.name
+  count = length(var.userName)
+  user = element(var.userName, count.index)
 }
 
 resource "aws_iam_user_policy" "demo" {
