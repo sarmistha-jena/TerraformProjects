@@ -40,6 +40,6 @@ resource "aws_iam_user_policy" "demo" {
 //  user   = element(var.userName, count.index)
   for_each = var.userName
 
-  policy = element(each.value) == "dev" ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
+  policy = each.value == "dev" ? module.PolicyIAM_DEV.policy : module.PolicyIAM_QA.policy
   user = each.key
 }
