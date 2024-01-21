@@ -11,7 +11,6 @@ resource "aws_instance" "example1" {
   }
   provisioner "local-exec" {
     command = "echo ${aws_instance.example1.private_ip} >> private_ips.txt"
-    command = "echo The server's IP address is ${self.private_ip}"
   }
   provisioner "local-exec" {
     when    = destroy

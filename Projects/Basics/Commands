@@ -27,7 +27,11 @@ tf plan&apply -var 'varName={"key=value"}' -- map value variables
 
 terraform plan/apply/destroy -var-file=variable.tfvars
 ----------------------------------------------------------------------------------------------------------------------------
+Loops
 
+Conditionals
+
+Provisioners
 ----------------------------------------------------------------------------------------------------------------------------
 Blocks
 
