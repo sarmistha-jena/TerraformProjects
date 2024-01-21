@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "demo" {
   }
   statement {
     effect    = "Allow"
-    actions   = "ec2:RunInstances"
+    actions   = ["ec2:RunInstances"]
     resources = [
       "arn:aws:ec2:*:637423393571:instance/*",
       "arn:aws:ec2:*:637423393571:subnet/*"

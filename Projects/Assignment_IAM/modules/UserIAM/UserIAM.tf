@@ -8,7 +8,9 @@ module "PolicyIAM_QA" {
   source = "../PolicyIAM_QA"
 }
 resource "aws_iam_user" "demo" {
-  name = var.userName
+  //name = var.userName
+  for_each = var.userName
+  name = each.value
   path = var.path
   force_destroy = var.force_destroy
   tags = {
