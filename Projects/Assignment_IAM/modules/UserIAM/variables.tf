@@ -12,7 +12,7 @@ variable "qauser" {
 
 variable "userName" {
   description = "List of names to be created"
-  type = set(string)
+  type = list(string)
   default = ["demoUserTF", "demoUserM", "dd"]
   //type        = list(string)
   //default     = ["user1", "user2", "user3", "user4", "user5"]
