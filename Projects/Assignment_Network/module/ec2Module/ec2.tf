@@ -2,7 +2,7 @@ module "vpc" {
   source = "../vpcModule"
 }
 
-module "ami" {
+module "amiModule" {
   source = "../amiModule"
 }
 
@@ -19,7 +19,7 @@ data "aws_availability_zones" "example" {
 }
 
 resource "aws_instance" "server" {
-  ami                    = module.ami
+  ami                    = module.amiModule.ami
   instance_type          = var.type
   key_name               = var.keyName
   vpc_security_group_ids = [module.sg.sgPub]
@@ -38,7 +38,7 @@ EOF
 }
 
 resource "aws_instance" "database" {
-  ami                    = module.ami
+  ami                    = module.amiModule.ami
   instance_type          = var.type
   key_name               = var.keyName
   vpc_security_group_ids = [module.sg.sgPrivate]
