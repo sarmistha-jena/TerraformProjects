@@ -24,6 +24,9 @@ resource "aws_security_group" "sgPub" {
     to_port     = 8080
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags                        = {
+    Name = "TF Public SG"
+  }
 }
 
 resource "aws_security_group" "sgPrivate" {
@@ -47,5 +50,8 @@ resource "aws_security_group" "sgPrivate" {
     protocol    = "tcp"
     to_port     = 3306
     cidr_blocks = [aws_security_group.sgPub.id]
+  }
+  tags                        = {
+    Name = "TF Private SG"
   }
 }
