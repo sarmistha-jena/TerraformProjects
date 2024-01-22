@@ -24,7 +24,7 @@ resource "aws_route_table" "rt_public" {
 }
 
 resource "aws_route_table_association" "pub-sub-rt" {
-  subnet_id      = module.subnet.publicSubnetId
+  subnet_id      = module.subnet.publicSubnetId[0]
   route_table_id = aws_route_table.rt_public.id
 }
 
@@ -40,6 +40,6 @@ resource "aws_route_table" "rt_private" {
 }
 
 resource "aws_route_table_association" "private-sub-rt" {
-  subnet_id      = module.subnet.privateSubnetId
+  subnet_id      = module.subnet.privateSubnetId[1]
   route_table_id = aws_route_table.rt_private.id
 }
