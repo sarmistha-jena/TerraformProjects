@@ -7,11 +7,14 @@ module "amiModule" {
 module "ebsModule" {
   source = "../ebsModule"
 }
+data "aws_availability_zones" "example" {
+  state = "available"
+}
 resource "aws_instance" "example1" {
-  ami           = module.amiModule.ami
-  instance_type = var.instance_size
-
-  tags = {
+  ami               = module.amiModule.ami
+  instance_type     = var.instance_size
+  availability_zone = data.aws_availability_zones.example.names[0]
+  tags              = {
     Name = "TF instance module"
   }
 }
