@@ -23,7 +23,7 @@ resource "aws_instance" "server" {
   instance_type          = var.type
   key_name               = var.keyName
   vpc_security_group_ids = [module.sg.sgPub]
-  subnet_id              = module.subnet.publicSubnetId[0]
+  subnet_id              = module.subnet.publicSubnetId
   availability_zone      = data.aws_availability_zones.example.names[0]
 
   associate_public_ip_address = true
@@ -42,7 +42,7 @@ resource "aws_instance" "database" {
   instance_type          = var.type
   key_name               = var.keyName
   vpc_security_group_ids = [module.sg.sgPrivate]
-  subnet_id              = module.subnet.privateSubnetId[1]
+  subnet_id              = module.subnet.privateSubnetId
   availability_zone      = data.aws_availability_zones.example.names[1]
 
   associate_public_ip_address = true
