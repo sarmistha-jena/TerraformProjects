@@ -4,6 +4,7 @@ variable default_region {
   default     = "ap-south-1"
 }
 
+
 variable instance_size {
   type        = string
   description = "ec2 web server size"
