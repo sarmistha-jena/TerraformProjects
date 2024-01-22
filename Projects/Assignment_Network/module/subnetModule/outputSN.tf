@@ -1,7 +1,13 @@
 output "publicSubnetId" {
-  value = aws_subnet.public_subnet.*.id[0]
+  value = {
+  for subnet in aws_subnet.public_subnet :
+  subnet.id => subnet.cidr_block
+  }
 }
 
 output "privateSubnetId" {
-  value = aws_subnet.private_subnet.*.id[1]
+  value = {
+  for subnet in aws_subnet.private_subnet :
+  subnet.id => subnet.cidr_block
+  }
 }
