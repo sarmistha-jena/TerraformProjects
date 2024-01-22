@@ -7,9 +7,6 @@ module "amiModule" {
 module "ebsModule" {
   source = "../ebsModule"
 }
-module "pemModule" {
-  source = "../pemModule"
-}
 resource "aws_instance" "example1" {
   ami           = module.amiModule.ami
   instance_type = var.instance_size
