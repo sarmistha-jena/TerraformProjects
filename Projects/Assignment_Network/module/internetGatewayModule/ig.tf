@@ -1,9 +1,9 @@
-module "vpc" {
+/*module "vpc" {
   source = "../vpcModule"
-}
+}*/
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = module.vpc.vpcid
+  vpc_id = var.vpcid
   tags   = {
     Name = "TF-IGW"
   }

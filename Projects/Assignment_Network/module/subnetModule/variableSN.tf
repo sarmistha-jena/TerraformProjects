@@ -21,3 +21,4 @@ variable "private_subnet_numbers" {
     "ap-south-1c" = 6
   }*/
 }
+variable "vpcid" {}

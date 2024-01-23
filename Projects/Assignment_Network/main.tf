@@ -8,12 +8,12 @@ module "vpc" {
 
 module "subnets" {
   source = "./module/subnetModule"
-  depends_on = [module.vpc]
+  vpcid = module.vpc.vpcid
 }
 
 module "igw" {
   source = "./module/internetGatewayModule"
-  depends_on = [module.vpc]
+  vpcid = module.vpc.vpcid
 }
 /*
 
