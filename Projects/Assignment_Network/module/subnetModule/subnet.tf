@@ -19,7 +19,7 @@ resource "aws_subnet" "public_subnet" {
 }
 
 resource "aws_subnet" "private_subnet" {
-  vpc_id = module.vpc.vpcid
+  vpc_id = var.vpcid
   /* for_each = var.private_subnet_numbers
 
    availability_zone = each.key
