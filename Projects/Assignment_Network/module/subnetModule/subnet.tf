@@ -1,7 +1,3 @@
-/*module "vpc" {
-  source = "../vpcModule"
-}*/
-
 resource "aws_subnet" "public_subnet" {
   vpc_id = var.vpcid
   /*for_each = var.public_subnet_numbers

@@ -8,25 +8,36 @@ module "vpc" {
 
 module "subnets" {
   source = "./module/subnetModule"
-  vpcid = module.vpc.vpcid
+  vpcid  = module.vpc.vpcid
 }
 
 module "igw" {
   source = "./module/internetGatewayModule"
-  vpcid = module.vpc.vpcid
+  vpcid  = module.vpc.vpcid
 }
-/*
 
-*/
-/*module "subnet" {
-  source = "./module/subnetModule"
-}*//*
-
-module "vpc_complete-web" {
-  source = "./module/ec2Module"
-  //subnets = keys(module.subnet.publicSubnetId)
+module "securityGroup" {
+  source = "./module/securityGroupModule"
+  vpcid  = module.vpc.vpcid
 }
-module "vpc_complete-db" {
-  source = "./module/dbEc2Module"
-  //subnets = keys(module.subnet.privateSubnetId)
-}*/
+
+module "server" {
+  source         = "./module/ec2Module"
+  publicSubnetId = module.subnets.publicSubnetId
+  sgPub          = module.securityGroup.sgPub
+}
+
+module "db" {
+  source          = "./module/dbEc2Module"
+  privateSubnetId = module.subnets.privateSubnetId
+  sgPrivate       = module.securityGroup.sgPrivate
+}
+
+module "routeTable" {
+  source                   = "./module/routeTableModule"
+  igwId                    = module.igw.igwId
+  vpcid                    = module.vpc.vpcid
+  privateSubnetId          = module.subnets.privateSubnetId
+  publicSubnetId           = module.subnets.publicSubnetId
+  pubEc2NetworkInterfaceId = module.server.pubEc2NetworkInterfaceId
+}

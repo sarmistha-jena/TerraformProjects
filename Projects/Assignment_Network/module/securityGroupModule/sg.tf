@@ -1,9 +1,5 @@
-module "vpc" {
-  source = "../vpcModule"
-}
-
 resource "aws_security_group" "sgPub" {
-  vpc_id = module.vpc.vpcid
+  vpc_id = var.vpcid
   egress {
     from_port   = 0
     protocol    = "-1" #allow all traffic
@@ -30,7 +26,7 @@ resource "aws_security_group" "sgPub" {
 }
 
 resource "aws_security_group" "sgPrivate" {
-  vpc_id = module.vpc.vpcid
+  vpc_id = var.vpcid
   egress {
     from_port   = 0
     protocol    = "-1" #allow all traffic

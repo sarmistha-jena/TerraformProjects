@@ -1,22 +1,8 @@
-module "vpc" {
-  source = "../vpcModule"
-}
-
-module "igw" {
-  source = "../internetGatewayModule"
-}
-
-module "subnet" {
-  source = "../subnetModule"
-}
-module "ec2" {
-  source = "../ec2Module"
-}
 resource "aws_route_table" "rt_public" {
-  vpc_id = module.vpc.vpcid
+  vpc_id = var.vpcid
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = module.igw.igwId
+    gateway_id = var.igwId
   }
   tags = {
     Name = "Public route table"
@@ -24,15 +10,15 @@ resource "aws_route_table" "rt_public" {
 }
 
 resource "aws_route_table_association" "pub-sub-rt" {
-  subnet_id      = module.subnet.publicSubnetId
+  subnet_id      = var.publicSubnetId
   route_table_id = aws_route_table.rt_public.id
 }
 
 resource "aws_route_table" "rt_private" {
-  vpc_id = module.vpc.vpcid
+  vpc_id = var.vpcid
   route {
     cidr_block           = "0.0.0.0/0"
-    network_interface_id = module.ec2.pubEc2NetworkInterfaceId
+    network_interface_id = var.pubEc2NetworkInterfaceId
   }
   tags = {
     Name = "Private route table"
@@ -40,6 +26,6 @@ resource "aws_route_table" "rt_private" {
 }
 
 resource "aws_route_table_association" "private-sub-rt" {
-  subnet_id      = module.subnet.privateSubnetId
+  subnet_id      = var.privateSubnetId
   route_table_id = aws_route_table.rt_private.id
 }
