@@ -45,7 +45,7 @@ resource "aws_security_group" "sgPrivate" {
     from_port   = 3306
     protocol    = "tcp"
     to_port     = 3306
-    cidr_blocks = [aws_security_group.sgPub.id]
+    security_groups = [aws_security_group.sgPub.id]
   }
   tags = {
     Name = "TF Private SG"
