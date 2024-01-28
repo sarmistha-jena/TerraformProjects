@@ -16,6 +16,18 @@ module "securityGroup" {
   vpcid  = module.vpc.vpcid
 }
 
+module "igw" {
+  source = "./module/internetGatewayModule"
+  vpcid  = module.vpc.vpcid
+}
+
+module "routeTable" {
+  source                   = "./module/routeTableModule"
+  igwId                    = module.igw.igwId
+  vpcid                    = module.vpc.vpcid
+  publicSubnetId           = module.subnets.publicSubnetId
+}
+
 module "elb" {
   source      = "./module/elbModule"
   sgElb       = module.securityGroup.sgElb
