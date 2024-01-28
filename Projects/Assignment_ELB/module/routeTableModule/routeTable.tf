@@ -10,6 +10,9 @@ resource "aws_route_table" "rt_public" {
 }
 
 resource "aws_route_table_association" "pub-sub-rt" {
-  subnet_id      = var.publicSubnetId.*.id
+  count = "${length(var.publicSubnetId)}"
+
+  subnet_id      = "${element(var.publicSubnetId.*.id, count.index)}"
+ // subnet_id      = var.publicSubnetId.*.id
   route_table_id = aws_route_table.rt_public.id
 }
