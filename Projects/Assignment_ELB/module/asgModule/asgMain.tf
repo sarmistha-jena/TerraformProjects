@@ -25,7 +25,6 @@ resource "aws_autoscaling_group" "demo_asg" {
   name                   = "sara-demo-asg"
   launch_configuration   = aws_launch_configuration.demo.id
   //availability_zones = [data.aws_availability_zones.all.names]
-  autoscaling_group_name = "sara-demo-asg"
   max_size               = 2
   min_size               = 10
   load_balancers         = [var.elbName]
