@@ -8,7 +8,7 @@ resource "aws_elb" "loadBalancer" {
   health_check {
     healthy_threshold   = 2
     interval            = 30
-    target              = "HTTP:${var.server_port}"
+    target              = "HTTP:${var.server_port}/"
     timeout             = 3
     unhealthy_threshold = 3
   }
