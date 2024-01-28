@@ -12,6 +12,9 @@ terraform destroy -target "PROVIDER.RESOURCE_TYPE.RESOURCE_NAME.ATTRIBUTE" --- d
 terraform show --- human-readable output from a state or plan file.
 terraform state list --- command is used to list resources within a Terraform state
 terraform graph -type=plan | dot -Tpng >graph.png  -- graph format for type=plan, plan-refresh-only, plan-destroy, or apply.
+eg;terraform graph -type=plan | dot -Tpng >graph1.png
+aws s3 cp graph1.png s3://my-tf-test-bucket-backend
+
 ---------------------------------------------------------------------------------------------------------------------------
 terraform import <resource name> <resource id>
 --- <resource id> is created outside of terraform and will be part of terraform as resource name before apply
