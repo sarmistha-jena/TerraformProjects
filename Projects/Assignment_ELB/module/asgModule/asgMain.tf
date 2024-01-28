@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "demo_asg" {
   min_size               = 10
   load_balancers         = [var.elbName]
   health_check_type      = "ELB"
-  vpc_zone_identifier    = [var.subnetId]
+  vpc_zone_identifier    = [var.subnetId.*.id]
   tag {
     key                 = "Name"
     value               = "SARA-ASG-PROJECT"
