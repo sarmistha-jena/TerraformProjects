@@ -21,6 +21,7 @@ module "elb" {
   sgElb       = module.securityGroup.sgElb
   elb_port    = "80"
   server_port = "8080"
+  subnetId    = module.subnets.publicSubnetId
 }
 module "asg" {
   source      = "./module/asgModule"

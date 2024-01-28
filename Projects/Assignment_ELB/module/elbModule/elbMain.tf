@@ -4,6 +4,7 @@ resource "aws_elb" "loadBalancer" {
   name               = "sara-elb-demo"
   security_groups    = [var.sgElb]
   availability_zones = data.aws_availability_zones.all.names
+  subnets = var.subnetId.*.id
 
   health_check {
     healthy_threshold   = 2
