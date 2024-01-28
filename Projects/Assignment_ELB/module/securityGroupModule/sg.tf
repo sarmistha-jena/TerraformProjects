@@ -54,7 +54,7 @@ resource "aws_security_group" "sgPrivate" {
 
 resource "aws_security_group" "elb" {
   name = "sara-demo-elb"
-
+  vpc_id = var.vpcid
   # Allow all outbound (-1)
   egress {
     from_port   = 0
@@ -74,7 +74,7 @@ resource "aws_security_group" "elb" {
 
 resource "aws_security_group" "instance" {
   name = "sara-demo-instance-elb"
-
+  vpc_id = var.vpcid
   # Inbound HTTP from anywhere
   ingress {
     from_port   = var.server_port
