@@ -31,15 +31,16 @@ module "routeTable" {
 module "elb" {
   source      = "./module/elbModule"
   sgElb       = module.securityGroup.sgElb
-  elb_port    = "80"
-  server_port = "8080"
+  elb_port    = var.elb_port
+  server_port = var.server_port
   subnetId    = module.subnets.publicSubnetId
 }
+
 module "asg" {
   source      = "./module/asgModule"
   elbName     = module.elb.elbName
-  server_port = "8080"
+  server_port = var.server_port
   sgServer    = module.securityGroup.sgElbInstance
   subnetId    = module.subnets.publicSubnetId
-  type        = "t3.micro"
+  type        = var.type
 }
