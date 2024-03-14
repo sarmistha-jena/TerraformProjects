@@ -15,8 +15,8 @@ provider "aws" {
 resource "aws_instance" "example1" {
   ami           = "ami-0a7cf821b91bcccbc"
   instance_type = "t2.micro"
-
+count=2
   tags = {
-    Name = "TF instance assignment-1"
+    Name = "TF instance assignment-${count.index}"
   }
 }
