@@ -5,8 +5,8 @@ provider "aws" {
 resource "aws_dynamodb_table" "dynamodb-terraform-lock" {
   name           = "terraform-lock"
   hash_key       = "LockID"
-  read_capacity  = 5
-  write_capacity = 5
+  read_capacity  = 1
+  write_capacity = 1
 
   attribute {
     name = "LockID"
@@ -19,9 +19,9 @@ resource "aws_dynamodb_table" "dynamodb-terraform-lock" {
 }
 resource "aws_s3_bucket" "tf_remote_state" {
   bucket = "terraform-state-demo-002"
-  lifecycle {
+  /*lifecycle {
     prevent_destroy = true
-  }
+  }*/
 }
   resource "aws_s3_bucket_versioning" "versioning_example" {
     bucket = aws_s3_bucket.tf_remote_state.id
