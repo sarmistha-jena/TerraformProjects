@@ -1,6 +1,3 @@
-provider "aws" {
-  region = var.default_region
-}
 module "amiModule" {
   source = "../amiModule"
 }
